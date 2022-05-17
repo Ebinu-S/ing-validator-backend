@@ -25,9 +25,9 @@ module.exports = function (app) {
                 function (response) {
                     let result = {};
 
-                    let temp = response.outputs[0].data;
+                    let allConcepts = response.outputs[0].data;
                     // result.data = temp;
-                    result.allergensFound = analyzeFood(temp, userAllergies);
+                    result.allergensFound = analyzeFood(allConcepts, userAllergies);
                     res.json(result);
                 },
                 function (err) {
@@ -49,7 +49,7 @@ function analyzeFood (allConcepts, userAllergies) {
                     for (let i of allergen.data) {
                         if (i == concept) {
                             allergensFound.push(i);
-                            console.log("allergen found: " + i);
+                            // console.log("allergen found: " + i);
                         }
                     }
                 }
