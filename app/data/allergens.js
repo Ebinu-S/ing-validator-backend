@@ -37,4 +37,4 @@ const allergens = [{
 
 ];
 
-// module.exports = allergens;
+module.exports = allergens;
