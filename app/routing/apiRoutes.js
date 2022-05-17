@@ -18,16 +18,16 @@ module.exports = function (app) {
     // POST to the api
     app.post('/api', function (req, res) {
         if (req.body) {
-            img = req.body.url;
-            userAllergies = req.body.userAllergies
+            let img = req.body.url;
+            let userAllergies = JSON.parse(req.body.userAllergies);
             // passes the Cloudinary stored image URL to the Clarifai API and returns the components array (object)
             cApp.models.predict(CLARIFAI_FOOD_MODEL, img).then(
                 function (response) {
                     let result = {};
 
                     let temp = response.outputs[0].data;
-                    result.data = temp;
-                    result.userAllergies = userAllergies;
+                    // result.data = temp;
+                    result.allergensFound = analyzeFood(temp, userAllergies);
                     res.json(result);
                 },
                 function (err) {
@@ -38,6 +38,25 @@ module.exports = function (app) {
     });
 };
 
-function analyzeFood () {
+function analyzeFood (allConcepts, userAllergies) {
+
+    let allergensFound = [];
+
+    for (let allergy of userAllergies) { // iterates over the user allergies
+        for (let allergen of allergens) { // iterates over the allergens data
+            if (allergen.name == allergy) {
+                for (let concept of allConcepts) { // iterate over the returned concepts (Clarafai API)
+                    for (let i of allergen.data) {
+                        if (i == concept) {
+                            allergensFound.push(i);
+                            console.log("allergen found: " + i);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    return allergensFound;
 
 }
