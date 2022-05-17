@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Will It Kill Me?</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script type="text/javascript" src="https://sdk.clarifai.com/js/clarifai-latest.js"></script>
+    <script src="https://widget.cloudinary.com/global/all.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans|Cabin+Sketch" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<!-- ##################################### Body ##################################### -->
+
+<body class="animated fadeIn">
+    <nav>
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo center"></a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+                <i class="material-icons">menu</i>
+            </a>
+            <ul class="right hide-on-med-and-down">
+                <li>
+                    <a href="https://github.com/sam-pop/WIKM" target="_blank">
+                        <i class="fa fa-github" aria-hidden="true"></i>
+                        &nbsp;Github Repo</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li>
+            <a href="https://github.com/sam-pop/WIKM" target="_blank">
+                <i class="fa fa-github" aria-hidden="true"></i>Github Repo</a>
+        </li>
+    </ul>
+    <div class="description">
+        <div class="row">
+            <div class="col m1"></div>
+            <div class="col m10 s12">
+                <div class="card">
+                    <div class="card-content white-text">
+                        <span class="card-title">
+                            <span style="font-size: 1.2em; font-weight: bold;">S</span>o you have
+                            <span style="text-decoration: underline #ff9b05;">food allergies</span>, unfortunately you
+                            <span style="text-decoration: underline #ff9b05;">don't</span> always know what's in your food.</span>
+                        <p>
+                            <b>Will It Kill Me</b> can help you out! Just let us know what food allergies you have, Snap
+                            a quick picture of the food that's in-front of you and let us do the rest!
+                            <br>
+                            <br>
+                            <p>You ask yourself "will it kill me?"... Probably not, but better safe than sorry!</p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col m1"></div>
+        </div>
+    </div>
+    <!-- Allergy FORM -->
+    <div class="smallScreenAllergies">
+        <div class="container row allergyForm">
+            <div class="allergy-form">
+                <select multiple="multiple" id="smallMultiselectbox">
+                    <option value="" disabled selected>Please choose all your food allergies:</option>
+                    <option value="corn">Corn</option>
+                    <option value="dairy">Dairy</option>
+                    <option value="eggs">Eggs</option>
+                    <option value="fish">Fish</option>
+                    <option value="peanuts">Peanuts</option>
+                    <option value="shellfish">Shellfish</option>
+                    <option value="soy">Soy</option>
+                    <option value="treenuts">Tree Nuts</option>
+                    <option value="wheat">Wheat</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="largeScreenAllergies">
+        <div class="container row center-align">
+            <p style="text-decoration: underline">Please check all your food allergies:</p>
+            <div class="allergy-form col m12">
+                <form action="#">
+                    <div style="padding-right: 15px; margin-left: 5px;">
+                        <span>
+                            <label>
+                                <input id="milk" value="milk" type="checkbox" />
+                                <span>Milk&nbsp;&nbsp;&nbsp;</span>
+                            </label>
+                        </span>
+                        <span class="leftish">
+                            <label>
+                                <input id="eggs" value="eggs" type="checkbox" />
+                                <span>Eggs&nbsp;&nbsp;&nbsp;</span>
+                            </label>
+                        </span>
+                        <span class="leftish">
+                            <label>
+                                <input id="peanuts" value="peanuts" type="checkbox" />
+                                <span>Peanuts&nbsp;&nbsp;&nbsp;</span>
+                            </label>
+                        </span>
+                        <span class="leftish">
+                            <label>
+                                <input id="treenuts" value="treenuts" type="checkbox" />
+                                <span>Tree nuts&nbsp;&nbsp;&nbsp;</span>
+                            </label>
+                        </span>
+                        <span class="leftish">
+                            <label>
+                                <input id="soy" value="soy" type="checkbox" />
+                                <span>Soy&nbsp;&nbsp;&nbsp;</span>
+                            </label>
+                        </span>
+                        <span class="leftish">
+                            <label>
+                                <input id="wheat" value="wheat" type="checkbox" />
+                                <span>Wheat&nbsp;&nbsp;&nbsp;</span>
+                            </label>
+                        </span>
+                        <span class="leftish">
+                            <label>
+                                <input id="fish" value="fish" type="checkbox" />
+                                <span>Fish&nbsp;&nbsp;&nbsp;</span>
+                            </label>
+                        </span>
+                        <span class="leftish">
+                            <label>
+                                <input id="shellfish" value="shellfish" type="checkbox" />
+                                <span>Shellfish&nbsp;&nbsp;&nbsp;</span>
+                            </label>
+                        </span>
+                        <span class="leftish">
+                            <label>
+                                <input id="corn" value="corn" type="checkbox" />
+                                <span>Corn&nbsp;&nbsp;&nbsp;</span>
+                            </label>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="firstScreen center">
+        <!-- WIDGET BUTTON -->
+        <br>
+        <a href="#" id="upload_widget_opener">Capture image</a>
+    </div>
+    <div class="secondScreen">
+        <div class="row valign center-block">
+            <div class="col s12 m5">
+                <br>
+                <div class="userPic valign center-block"></div>
+                <div class="userMsg"></div>
+                <div class="userMsgIng"></div>
+            </div>
+            <div class="col s12 m7">
+                <br>
+                <div id="chartContainer" style="height: 370px; width: 100%; margin-top: 7%;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ##################################### JS ##################################### -->
+
+    <script src="./allergens.js"></script>
+    <script src="./index.js"></script>
+
+</body>
+
+</html>
