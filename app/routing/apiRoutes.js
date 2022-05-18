@@ -1,7 +1,6 @@
 require("dotenv").config();
 const Clarifai = require('clarifai');
-const allergens = require('../data/allergens');
-
+c
 const CLARIFAI_FOOD_MODEL = "bd367be194cf45149e75f01d59f77ba7";
 const CLARIFAI_API_KEY = process.env.key;
 
@@ -10,8 +9,6 @@ const CLARIFAI_API_KEY = process.env.key;
 const cApp = new Clarifai.App({
     apiKey: CLARIFAI_API_KEY
 });
-
-// console.log(allergens);
 
 
 module.exports = function (app) {
@@ -32,30 +29,9 @@ module.exports = function (app) {
         }
         else
         {
-            console.log("12312312")
+            res.json({
+                error : true
+            });
         }
     });
 };
-
-function analyzeFood (allConcepts, userAllergies) {
-
-    let allergensFound = [];
-
-    for (let allergy of userAllergies) { // iterates over the user allergies
-        for (let allergen of allergens) { // iterates over the allergens data
-            if (allergen.name == allergy) {
-                for (let concept of allConcepts) { // iterate over the returned concepts (Clarafai API)
-                    for (let i of allergen.data) {
-                        if (i == concept) {
-                            allergensFound.push(i);
-                            // console.log("allergen found: " + i);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    return allergensFound;
-
-}

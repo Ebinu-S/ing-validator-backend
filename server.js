@@ -14,7 +14,6 @@ app.use(bodyParser.urlencoded({
 
 // Router
 require('./app/routing/apiRoutes')(app);
-require('./app/routing/htmlRoutes')(app);
 
 
 // Listener
