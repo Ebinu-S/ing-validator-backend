@@ -1,6 +1,6 @@
 require("dotenv").config();
 const Clarifai = require('clarifai');
-c
+
 const CLARIFAI_FOOD_MODEL = "bd367be194cf45149e75f01d59f77ba7";
 const CLARIFAI_API_KEY = process.env.key;
 

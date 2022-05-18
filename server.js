@@ -15,7 +15,6 @@ app.use(bodyParser.urlencoded({
 // Router
 require('./app/routing/apiRoutes')(app);
 
-
 // Listener
 app.listen(PORT, function () {
     console.log("Listening on port " + PORT);
